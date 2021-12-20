@@ -1,0 +1,7 @@
+---
+  - hosts: Ubuntu, CentOS
+    become: True
+    
+    roles:
+     - elk
+     - filebeats

@@ -1,0 +1,29 @@
+---
+# tasks file for filebeats
+# Install Filebeat on Ubuntu
+  - name: Install Filebeat on Ubuntu
+    apt:
+      name: filebeat
+      state: latest
+      update_cache: yes
+    when: ansible_distribution == "Ubuntu"
+  
+  - name: Enable Filebeat on Ubuntu
+    systemd: 
+      name: filebeat
+      enabled: yes
+    when: ansible_distribution == "Ubuntu"
+
+# Install Filebeat on CentOS
+  - name: Install Filebeat on CentOS
+    yum:
+      name: filebeat
+      state: latest
+      update_cache: yes
+    when: ansible_distribution == "CentOS"
+
+  - name: Enable Filebeat on CentOS
+    systemd: 
+      name: filebeat
+      enabled: yes
+    when: ansible_distribution == "CentOS"

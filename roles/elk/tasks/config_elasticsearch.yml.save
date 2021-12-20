@@ -1,0 +1,32 @@
+	---
+# install Elasticsearch
+  # GPG Key
+  - name: Adding Elastic Search GPG Key on Ubuntu
+    apt_key:
+      url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+      state: present
+    when: ansible_distribution == "Ubuntu"
+
+  - name: Adding Elastic Search GPG Key on CentOS
+    rpm_key:
+      key: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+      state: present
+    when: ansible_distribution == "CentOS"
+
+ # Installation
+  
+  - name: Transport key on Ubuntu
+    apt:
+      name: apt-transport-https
+      update_cache: yes
+    when: ansible_distribution == "Ubuntu"
+
+  - name: Installing Elastic Search on Ubuntu
+    apt:
+      name: elasticsearch
+    when: ansible_distribution == "Ubuntu"
+
+  - name: Installing Elastic Search on CentOS
+    dnf:
+      name: elasticsearch
+    when: ansible_distribution == "CentOS"

@@ -1,0 +1,16 @@
+---
+# install java 
+
+  - name: Install Java on Ubuntu
+    apt:
+      name: openjdk-8-jre-headless
+      state: latest
+      update_cache: yes
+    when: ansible_distribution == "Ubuntu"
+
+  - name: Install Java on CentOS
+    dnf:
+      name: java-1.8.0-openjdk-devel
+      state: latest
+      update_cache: yes
+    when: ansible_distribution == "CentOS"
